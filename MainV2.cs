@@ -1277,11 +1277,11 @@ namespace MissionPlanner
             _connectionControl.CMB_serialport.Items.Clear();
 
             _connectionControl.CMB_serialport.Items.Add("AUTO");
-            if (!MainV2.MONO) 
+            if (!MONO) // windows only
             {
-                foreach (string cPN in SerialPort.GetPortNames()) 
+                foreach (string portName in SerialPort.GetPortNames()) 
                 {
-                    _connectionControl.CMB_serialport.Items.Add(cPN + " " + SerialPort.GetNiceName(cPN));
+                    _connectionControl.CMB_serialport.Items.Add(portName + " " + SerialPort.GetNiceName(portName));
                 }
             }
             else 
