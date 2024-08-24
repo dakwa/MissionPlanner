@@ -1277,8 +1277,17 @@ namespace MissionPlanner
             _connectionControl.CMB_serialport.Items.Clear();
 
             _connectionControl.CMB_serialport.Items.Add("AUTO");
-            _connectionControl.CMB_serialport.Items.AddRange(SerialPort.GetPortNames());
-
+            if (!MainV2.MONO) 
+            {
+                foreach (string cPN in SerialPort.GetPortNames()) 
+                {
+                    _connectionControl.CMB_serialport.Items.Add(cPN + " " + SerialPort.GetNiceName(cPN));
+                }
+            }
+            else 
+            {
+                _connectionControl.CMB_serialport.Items.AddRange(SerialPort.GetPortNames());
+            }
             _connectionControl.CMB_serialport.Items.Add("TCP");
             _connectionControl.CMB_serialport.Items.Add("UDP");
             _connectionControl.CMB_serialport.Items.Add("UDPCl");
